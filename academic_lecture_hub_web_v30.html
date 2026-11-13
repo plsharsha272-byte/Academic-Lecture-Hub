@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <!-- Internal Build Version: Web v30 (Hidden from public UI, preserved in title & download filename) -->
+  <title>Academic Lecture Hub — Web v30</title>
+  <meta name="description" content="Academic Lecture Hub by Pilli Lalith Sriharsha, Master's in Computer Science — Official Syllabi & Unit-Wise Lecture Notes.">
+
+  <style>
+    /* =========================================================================
+       1. STRICT BELL MT TYPOGRAPHY & CHIMNEY GOLD / ICE BLUE PALETTE
+    ========================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      font-family: "Bell MT", "Bell", Georgia, "Times New Roman", serif !important;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-obsidian: #070B14;
+      --bg-velvet: #0D1322;
+      --bg-card: #0F172A;
+      --bg-card-elevated: #131D33;
+      --ice-blue: #7DD3FC;
+      --ice-blue-light: #BAE6FD;
+      --ice-blue-bright: #38BDF8;
+      --ice-blue-soft: rgba(125, 211, 252, 0.12);
+      --ice-blue-border: rgba(125, 211, 252, 0.30);
+      --gold: #D4AF37;
+      --gold-light: #F3E5AB;
+      --gold-soft: rgba(212, 175, 55, 0.14);
+      --gold-border: rgba(212, 175, 55, 0.38);
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --border-hairline: rgba(125, 211, 252, 0.22);
+      --shadow-luxury: 0 14px 34px -10px rgba(0, 0, 0, 0.75);
+      --shadow-glow: 0 18px 38px -10px rgba(56, 189, 248, 0.24), 0 0 0 1px rgba(212, 175, 55, 0.42);
+    }
+
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: var(--bg-obsidian);
+      color: var(--text-primary);
+      line-height: 1.48;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.09), transparent 42%),
+        radial-gradient(circle at 85% 18%, rgba(212, 175, 55, 0.08), transparent 40%),
+        radial-gradient(rgba(125, 211, 252, 0.06) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 24px 24px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =========================================================================
+       2. LAYOUT SHELL & LUXURY SURFACES
+    ========================================================================= */
+    .shell {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 12px 14px;
+    }
+
+    @media (min-width: 768px) {
+      .shell {
+        padding: 18px 24px;
+      }
+    }
+
+    .luxury-surface {
+      background: linear-gradient(145deg, var(--bg-card) 0%, var(--bg-velvet) 100%);
+      border: 1px solid var(--border-hairline);
+      border-radius: 20px;
+      box-shadow: var(--shadow-luxury);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.28s ease,
+                  box-shadow 0.28s ease;
+    }
+
+    /* =========================================================================
+       3. CLEAN TOP HEADER (NO NIGHT TOGGLE, NO PORTFOLIO BTN, NO VERSION BADGE)
+    ========================================================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      padding-bottom: 4px;
+    }
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      border-radius: 18px;
+      background: rgba(13, 19, 34, 0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+    }
+
+    .brand-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      min-width: 0;
+    }
+
+    .emblem-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.22), rgba(125, 211, 252, 0.18));
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.24);
+    }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.02em;
+    }
+
+    @media (min-width: 768px) {
+      .brand-title {
+        font-size: 20px;
+      }
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ice-blue);
+      margin-top: 2px;
+    }
+
+    /* =========================================================================
+       4. HOME VIEW: EXECUTIVE PROFILE CARD (ENLARGED PHOTO + MEDIUM BUTTONS)
+    ========================================================================= */
+    .main-stack {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .profile-hero-card {
+      padding: 20px;
+      border-color: var(--ice-blue-border);
+    }
+
+    @media (min-width: 768px) {
+      .profile-hero-card {
+        padding: 26px 28px;
+      }
+    }
+
+    .profile-flex-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .profile-flex-row {
+        gap: 28px;
+      }
+    }
+
+    .profile-details-col {
+      flex: 1 1 auto;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dept-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+
+    .faculty-heading {
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-top: 4px;
+    }
+
+    @media (min-width: 768px) {
+      .faculty-heading {
+        font-size: 31px;
+      }
+    }
+
+    .faculty-qual {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ice-blue-light);
+      margin-top: 4px;
+    }
+
+    @media (min-width: 768px) {
+      .faculty-qual {
+        font-size: 18px;
+      }
+    }
+
+    /* Balanced Medium-Sized Contact Buttons */
+    .contact-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .contact-btn-medium {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 175px;
+      max-width: 235px;
+      padding: 10px 16px;
+      border-radius: 13px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid var(--gold-border);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .contact-btn-medium:hover {
+      transform: translateY(-2px);
+      border-color: var(--ice-blue-bright);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.20);
+    }
+
+    .contact-btn-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .icon-gold-box {
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+    }
+
+    .icon-ice-box {
+      background: var(--ice-blue-soft);
+      border: 1px solid var(--ice-blue-border);
+      color: var(--ice-blue);
+    }
+
+    .contact-btn-meta {
+      min-width: 0;
+    }
+
+    .contact-btn-label {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .contact-btn-value {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 1px;
+    }
+
+    /* Enlarged Portrait Profile Photo (Home View Only) */
+    .portrait-frame {
+      width: 128px;
+      height: 156px;
+      border-radius: 18px;
+      overflow: hidden;
+      flex-shrink: 0;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--gold), var(--ice-blue-bright));
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65), 0 0 22px rgba(125, 211, 252, 0.24);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    }
+
+    @media (min-width: 768px) {
+      .portrait-frame {
+        width: 164px;
+        height: 198px;
+        border-radius: 20px;
+      }
+    }
+
+    .portrait-frame:hover,
+    .portrait-frame:active {
+      transform: scale(1.04);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.8), 0 0 28px rgba(212, 175, 55, 0.40);
+    }
+
+    .portrait-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      background-color: var(--bg-velvet);
+    }
+
+    @media (min-width: 768px) {
+      .portrait-inner {
+        border-radius: 17px;
+      }
+    }
+
+    .portrait-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    .portrait-frame:hover .portrait-img {
+      transform: scale(1.06);
+    }
+
+    .portrait-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold-light);
+      background: var(--bg-card);
+    }
+
+    /* =========================================================================
+       5. SLEEK SIDE-BY-SIDE CARDS GRID (HOME SUBJECTS & UNIT CARDS)
+    ========================================================================= */
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 0 2px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    @media (min-width: 768px) {
+      .section-title {
+        font-size: 24px;
+      }
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .status-pill-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--ice-blue-soft);
+      border: 1px solid var(--ice-blue-border);
+      color: var(--ice-blue-light);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--ice-blue-bright);
+      box-shadow: 0 0 8px var(--ice-blue-bright);
+    }
+
+    /* 2 Sleek Cards Side-by-Side on Mobile, 3 Sleek Cards on Desktop */
+    .sleek-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .sleek-cards-grid {
+        grid-template-columns: repeat(3, minmax(0, 290px));
+        gap: 18px;
+      }
+    }
+
+    /* Sleek Narrower Card with Preserved Height & Luxury Hover Glow */
+    .sleek-card {
+      text-align: left;
+      min-height: 215px;
+      padding: 15px;
+      border-radius: 18px;
+      background: linear-gradient(160deg, #0E1526 0%, #090E1A 100%);
+      border: 1px solid var(--border-hairline);
+      box-shadow: var(--shadow-luxury);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.28s ease,
+                  box-shadow 0.28s ease;
+    }
+
+    @media (min-width: 768px) {
+      .sleek-card {
+        min-height: 230px;
+        padding: 18px;
+      }
+    }
+
+    .sleek-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .sleek-card:active {
+      transform: scale(0.99);
+    }
+
+    .card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .card-icon-badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .card-pill-gold {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+    }
+
+    .card-pill-ice {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--ice-blue-soft);
+      border: 1px solid var(--ice-blue-border);
+      color: var(--ice-blue-light);
+    }
+
+    .card-pill-muted {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(148, 163, 184, 0.1);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      color: var(--text-muted);
+    }
+
+    .sleek-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.32;
+      color: var(--text-primary);
+      margin-top: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .sleek-card-title {
+        font-size: 17px;
+      }
+    }
+
+    .sleek-card-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    .sleek-card-footer {
+      padding-top: 10px;
+      border-top: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    /* =========================================================================
+       6. DEDICATED SUBJECT VIEW (FULL-WIDTH SYLLABUS CARD + UNIT CARDS GRID)
+    ========================================================================= */
+    .subject-view-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .subject-header-card {
+      padding: 20px;
+      border-color: var(--gold-border);
+    }
+
+    @media (min-width: 768px) {
+      .subject-header-card {
+        padding: 24px 28px;
+      }
+    }
+
+    .subject-nav-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .btn-back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 15px;
+      border-radius: 11px;
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-back-home:hover {
+      transform: translateX(-2px);
+      border-color: var(--ice-blue);
+      color: var(--ice-blue-light);
+    }
+
+    .subject-main-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 14px;
+      line-height: 1.25;
+    }
+
+    @media (min-width: 768px) {
+      .subject-main-title {
+        font-size: 28px;
+      }
+    }
+
+    /* Unit-Wise Topics Overview Strip Under Subject Heading */
+    .topics-strip {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(7, 11, 20, 0.65);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .topics-strip-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ice-blue);
+      margin-bottom: 10px;
+    }
+
+    .topics-strip-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .topics-strip-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .topic-chip {
+      padding: 7px 11px;
+      border-radius: 9px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-hairline);
+      font-size: 12.5px;
+      color: var(--text-secondary);
+    }
+
+    .topic-chip strong {
+      color: var(--gold-light);
+    }
+
+    /* Separate Full-Width Official Syllabus Card with Smooth Hover Effect */
+    .syllabus-full-card {
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #10192E 0%, #0A101E 100%);
+      border: 1px solid var(--gold-border);
+      box-shadow: var(--shadow-luxury);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.28s ease,
+                  box-shadow 0.28s ease;
+    }
+
+    @media (min-width: 768px) {
+      .syllabus-full-card {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 22px 26px;
+      }
+    }
+
+    .syllabus-full-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--ice-blue-bright);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .step-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .syllabus-card-heading {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .syllabus-card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Action Buttons: ONLY View & Download (NO Print Anywhere) */
+    .dual-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-view-ice {
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: var(--ice-blue-soft);
+      border: 1px solid var(--ice-blue);
+      color: var(--ice-blue-light);
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-view-ice:hover {
+      background: var(--ice-blue-bright);
+      color: #070B14;
+      transform: translateY(-1px);
+    }
+
+    .btn-download-gold {
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: var(--gold-soft);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-download-gold:hover {
+      background: var(--gold);
+      color: #070B14;
+      transform: translateY(-1px);
+    }
+
+    .unit-card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .unit-card-actions .btn-view-ice,
+    .unit-card-actions .btn-download-gold {
+      width: 100%;
+      padding: 7px 8px;
+      font-size: 11.5px;
+    }
+
+    .unit-scheduled-bar {
+      padding-top: 10px;
+      border-top: 1px solid var(--border-hairline);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* =========================================================================
+       7. FOOTER (WEB V29 LAYOUT) & DOCUMENT VIEWER MODAL
+    ========================================================================= */
+    .site-footer {
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    .footer-bar {
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(13, 19, 34, 0.88);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .footer-bar {
+        flex-direction: row;
+        text-align: left;
+      }
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      background: rgba(3, 6, 14, 0.84);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+
+    .modal-dialog {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: var(--bg-velvet);
+      border: 1px solid var(--gold-border);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .modal-top-bar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-close-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(148, 163, 184, 0.12);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .modal-close-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    .pdf-preview-frame {
+      width: 100%;
+      height: 60vh;
+      border: 1px solid var(--ice-blue-border);
+      border-radius: 14px;
+      background: #070B14;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =====================================================================
+       CLEAN TOP HEADER (NO NIGHT TOGGLE, NO PORTFOLIO BTN, NO VERSION BADGE)
+  ====================================================================== -->
+  <header class="site-header shell">
+    <div class="header-bar">
+      <button type="button" onclick="navigateHome()" class="brand-btn" aria-label="Return to Academic Lecture Hub Home">
+        <div class="emblem-badge">PLS</div>
+        <div>
+          <div class="brand-title">Academic Lecture Hub</div>
+          <div class="brand-sub">Pilli Lalith Sriharsha • Department of Computer Science</div>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       MAIN APPLICATION CONTAINER
+  ====================================================================== -->
+  <main class="main-stack shell">
+
+    <!-- VIEW 1: HOME VIEW -->
+    <div id="view-home" class="main-stack">
+
+      <!-- EXECUTIVE PROFILE CARD (ENLARGED PORTRAIT + BALANCED MEDIUM CONTACT BUTTONS) -->
+      <section class="luxury-surface profile-hero-card" aria-label="Faculty Profile">
+        <div class="profile-flex-row">
+          <div class="profile-details-col">
+            <div>
+              <span class="dept-eyebrow">&#9670; Department of Computer Science</span>
+              <h1 class="faculty-heading">Pilli Lalith Sriharsha</h1>
+              <p class="faculty-qual">Master's in Computer Science</p>
+            </div>
+
+            <!-- Balanced Medium-Sized Contact Buttons -->
+            <div class="contact-actions-row">
+              <a href="tel:+919493471854" class="contact-btn-medium" aria-label="Call Student Helpline 9493471854">
+                <span class="contact-btn-icon icon-gold-box">&#9742;</span>
+                <div class="contact-btn-meta">
+                  <span class="contact-btn-label">Student Helpline</span>
+                  <span class="contact-btn-value">9493471854</span>
+                </div>
+              </a>
+
+              <a href="https://pillilalithsriharsha.com" target="_blank" rel="noopener noreferrer" class="contact-btn-medium" aria-label="Open Official Website">
+                <span class="contact-btn-icon icon-ice-box">&#127760;</span>
+                <div class="contact-btn-meta">
+                  <span class="contact-btn-label">Official Portal</span>
+                  <span class="contact-btn-value">Website &#8599;</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Enlarged Portrait Profile Photo (Home View Only) -->
+          <div class="portrait-frame" title="Pilli Lalith Sriharsha — Master's in Computer Science">
+            <div class="portrait-inner">
+              <img
+                id="home-portrait-img"
+                src="https://drive.google.com/thumbnail?id=1H2_orAsSBakIghb6aG9lL4KkYGE9Hq-4&sz=w1000"
+                alt="Pilli Lalith Sriharsha"
+                data-step="0"
+                onerror="handlePortraitFallback(this)"
+                class="portrait-img"
+              />
+              <div id="home-portrait-fallback" class="portrait-fallback hidden">PLS</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CORE SUBJECTS SECTION (ALL SUBJECTS UNLOCKED FOR STUDENT ACCESS) -->
+      <section aria-label="Academic Subjects">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Academic Subjects</h2>
+            <p class="section-subtitle">Select a subject card to access Official Syllabus and Unit-Wise Lecture Notes.</p>
+          </div>
+          <span class="status-pill-live">
+            <span class="live-dot"></span>
+            <span>All Subjects Open</span>
+          </span>
+        </div>
+
+        <div id="home-subjects-grid" class="sleek-cards-grid">
+          <!-- Dynamically populated from frozen PORTAL_CATALOG -->
+        </div>
+      </section>
+
+    </div>
+
+    <!-- VIEW 2: DEDICATED SUBJECT VIEW -->
+    <div id="view-subject" class="subject-view-stack hidden">
+      <!-- Dynamically populated when a subject card is clicked -->
+    </div>
+
+  </main>
+
+  <!-- =====================================================================
+       COMPACT FOOTER (UPDATED WEB V29 STRUCTURE)
+  ====================================================================== -->
+  <footer class="site-footer shell">
+    <div class="footer-bar">
+      <div>
+        <strong style="color: var(--gold-light);">P. L. Sriharsha</strong> &bull; <span style="color: var(--ice-blue-light);">Academic Lecture Hub</span>
+      </div>
+      <div style="color: var(--text-muted);">
+        &copy; 2026 Pilli Lalith Sriharsha. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       DOCUMENT VIEWER MODAL (VIEW & DOWNLOAD ONLY — NO PRINT BUTTON)
+  ====================================================================== -->
+  <div id="doc-viewer-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-top-bar">
+        <div>
+          <span id="modal-tag" class="card-pill-ice">Document</span>
+          <h3 id="modal-heading" style="font-size: 19px; font-weight: 700; color: var(--text-primary); margin-top: 6px;">Title</h3>
+          <p id="modal-subheading" style="font-size: 12.5px; color: var(--text-secondary); margin-top: 2px;">Subtitle</p>
+        </div>
+        <button type="button" onclick="closeDocModal()" class="modal-close-btn" aria-label="Close Preview">&#10005;</button>
+      </div>
+
+      <iframe id="modal-pdf-frame" class="pdf-preview-frame hidden" title="Lecture Document Preview"></iframe>
+      <p id="modal-message" class="hidden" style="font-size: 14px; color: var(--text-secondary); line-height: 1.55; padding: 10px 0;"></p>
+
+      <div id="modal-footer-actions" class="dual-action-row" style="justify-content: flex-end;">
+        <a id="modal-open-tab-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-view-ice">
+          <span>Open in New Tab &#8599;</span>
+        </a>
+        <a id="modal-download-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
+          <span>Download PDF &#8595;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V30)
+  ====================================================================== -->
+  <script>
+    const BUILD_VERSION_FILENAME = "Academic Lecture Hub — Web v30.html";
+
+    const PORTAL_CATALOG = {
+      profile: {
+        name: "Pilli Lalith Sriharsha",
+        qualification: "Master's in Computer Science",
+        department: "Department of Computer Science",
+        phone: "9493471854",
+        website: "https://pillilalithsriharsha.com",
+        photoId: "1H2_orAsSBakIghb6aG9lL4KkYGE9Hq-4"
+      },
+      subjects: [
+        {
+          id: "fit",
+          code: "FIT",
+          semester: "Semester I",
+          title: "Fundamentals of Information Technology",
+          subtitle: "Office Automation, Computer Architecture, Networking & Data Modelling",
+          syllabus: {
+            title: "FIT Official University Syllabus Copy",
+            status: "available",
+            viewUrl: "https://drive.google.com/file/d/1c7B5iax4mPFWpMOxat7DfKj68bcJTDzr/view?usp=sharing",
+            previewUrl: "https://drive.google.com/file/d/1c7B5iax4mPFWpMOxat7DfKj68bcJTDzr/preview",
+            downloadUrl: "https://drive.google.com/uc?export=download&id=1c7B5iax4mPFWpMOxat7DfKj68bcJTDzr"
+          },
+          units: [
+            {
+              num: "01",
+              title: "Block Diagram, Generations, Evolution & Number System",
+              topics: "Block Diagram of the Computer • Generations of Computers • Evolution of the Computer • Number System.",
+              status: "available",
+              viewUrl: "https://drive.google.com/file/d/1u-l7gwp0Ki26klL7oktZ-rnbcn1_nQMm/view?usp=drive_link",
+              previewUrl: "https://drive.google.com/file/d/1u-l7gwp0Ki26klL7oktZ-rnbcn1_nQMm/preview",
+              downloadUrl: "https://drive.google.com/uc?export=download&id=1u-l7gwp0Ki26klL7oktZ-rnbcn1_nQMm"
+            },
+            {
+              num: "02",
+              title: "Basic Organization and Network Fundamentals",
+              topics: "I/O Devices, Memory Hierarchy, Types of Computers, LAN/WAN/MAN, Topologies & Internet Basics.",
+              status: "coming_soon"
+            },
+            {
+              num: "03",
+              title: "Word Processing and Presentations",
+              topics: "MS Word / Google Docs, Tables & Graphics, Document Layout, Mail Merge & Presentations.",
+              status: "coming_soon"
+            },
+            {
+              num: "04",
+              title: "Spreadsheet Basics",
+              topics: "MS Excel / Google Sheets, Cell Referencing, Formulae, VLOOKUP/XLOOKUP, Charts & Data Handling.",
+              status: "coming_soon"
+            },
+            {
+              num: "05",
+              title: "Data Modelling",
+              topics: "Pivot Tables & Charts, Data Validation, What-If Analysis, Dashboards & Slicers.",
+              status: "coming_soon"
+            }
+          ]
+        },
+        {
+          id: "iot",
+          code: "IoT",
+          semester: "Semester V",
+          title: "Internet of Things",
+          subtitle: "IoT Fundamentals, Smart Sensors, Wireless Protocols & Cloud Platforms",
+          syllabus: {
+            title: "IoT Official University Syllabus Copy",
+            status: "available",
+            viewUrl: "https://drive.google.com/file/d/1DBkeNKjF3ywuvwII03h18R5UffTT1716/view?usp=drive_link",
+            previewUrl: "https://drive.google.com/file/d/1DBkeNKjF3ywuvwII03h18R5UffTT1716/preview",
+            downloadUrl: "https://drive.google.com/uc?export=download&id=1DBkeNKjF3ywuvwII03h18R5UffTT1716"
+          },
+          units: [
+            {
+              num: "01",
+              title: "Fundamentals and Applications of IoT",
+              topics: "Definitions, Characteristics, Architectures, Physical/Logical Design, Enabling Technologies & Applications.",
+              status: "coming_soon"
+            },
+            {
+              num: "02",
+              title: "Sensors Networks, Arduino & Raspberry Pi",
+              topics: "Sensors, Actuators, Arduino IDE & Boards, Raspberry Pi Kit, RFID & Wireless Sensor Networks.",
+              status: "coming_soon"
+            },
+            {
+              num: "03",
+              title: "Wireless Technologies & IP-Based Protocols",
+              topics: "IEEE 802.15.4, Zigbee, BLE, Z-Wave, IPv6, 6LoWPAN, LoRa, CoAP & MQTT.",
+              status: "coming_soon"
+            },
+            {
+              num: "04",
+              title: "Arduino Simulation, Interfacing & Actuators",
+              topics: "Arduino Uno Architecture, Embedded C, LED/LCD, Temperature/Motion/Gas Sensors & Relay/Servo.",
+              status: "coming_soon"
+            },
+            {
+              num: "05",
+              title: "Developing IoTs, Cloud Platforms & Security",
+              topics: "Blynk, ThingSpeak, AWS IoT, Google Cloud IoT, Fog Computing, Privacy & Security.",
+              status: "coming_soon"
+            }
+          ]
+        },
+        {
+          id: "co",
+          code: "CO",
+          semester: "Semester III",
+          title: "Computer Organisation",
+          subtitle: "Register Transfer, Microprogrammed Control, Memory Hierarchy & Arithmetic",
+          syllabus: {
+            title: "Computer Organisation Official Syllabus Copy",
+            status: "available",
+            viewUrl: "https://drive.google.com/file/d/1FwfN5OQj3OE2XuRS7C1QrmBAkweOWFKN/view?usp=drive_link",
+            previewUrl: "https://drive.google.com/file/d/1FwfN5OQj3OE2XuRS7C1QrmBAkweOWFKN/preview",
+            downloadUrl: "https://drive.google.com/uc?export=download&id=1FwfN5OQj3OE2XuRS7C1QrmBAkweOWFKN"
+          },
+          units: [
+            {
+              num: "01",
+              title: "Register Transfer Language & Micro Operations",
+              topics: "Computer Registers, Bus/Memory Transfers, Arithmetic/Logic/Shift Micro-operations & Instruction Cycle.",
+              status: "coming_soon"
+            },
+            {
+              num: "02",
+              title: "CPU and Micro Programmed Control",
+              topics: "Instruction Formats, Addressing Modes, Control Memory, Hardwired & Microprogrammed Control.",
+              status: "coming_soon"
+            },
+            {
+              num: "03",
+              title: "Memory Organization & Cache Mappings",
+              topics: "Memory Hierarchy, Main Memory, Auxiliary Memory, Associative Memory & Cache Mapping.",
+              status: "coming_soon"
+            },
+            {
+              num: "04",
+              title: "Input-Output Organization & DMA",
+              topics: "Peripheral Devices, I/O Interface, Asynchronous Transfer, Priority Interrupt, DMA & IOP.",
+              status: "coming_soon"
+            },
+            {
+              num: "05",
+              title: "Computer Arithmetic & Algorithms",
+              topics: "Fixed-Point & Floating-Point Representation, Addition, Subtraction, Multiplication & Division.",
+              status: "coming_soon"
+            }
+          ]
+        }
+      ]
+    };
+
+    // Deep-freeze catalog data so runtime state cannot be modified unexpectedly
+    function deepFreeze(obj) {
+      Object.keys(obj).forEach(key => {
+        if (obj[key] && typeof obj[key] === "object") {
+          deepFreeze(obj[key]);
+        }
+      });
+      return Object.freeze(obj);
+    }
+    deepFreeze(PORTAL_CATALOG);
+
+    /* =========================================================================
+       PORTRAIT FALLBACK HANDLER (HOME VIEW ONLY)
+    ========================================================================= */
+    function handlePortraitFallback(img) {
+      const step = parseInt(img.getAttribute("data-step") || "0", 10);
+      if (step === 0) {
+        img.setAttribute("data-step", "1");
+        img.src = "https://lh3.googleusercontent.com/d/" + PORTAL_CATALOG.profile.photoId;
+      } else {
+        img.classList.add("hidden");
+        const fallback = document.getElementById("home-portrait-fallback");
+        if (fallback) fallback.classList.remove("hidden");
+      }
+    }
+
+    /* =========================================================================
+       RENDER UNLOCKED HOME SUBJECT CARDS
+    ========================================================================= */
+    function renderHomeSubjects() {
+      const grid = document.getElementById("home-subjects-grid");
+      if (!grid) return;
+
+      grid.innerHTML = PORTAL_CATALOG.subjects.map(sub => {
+        const hasLiveNotes = sub.units.some(u => u.status === "available");
+        const statusBadge = hasLiveNotes
+          ? `<span class="card-pill-ice">Unit 01 Live</span>`
+          : `<span class="card-pill-gold">Syllabus Live</span>`;
+
+        return `
+          <button type="button" onclick="openSubject('${sub.id}')" class="sleek-card" aria-label="Open ${sub.title}">
+            <div>
+              <div class="card-top-row">
+                <span class="card-icon-badge">${sub.code}</span>
+                ${statusBadge}
+              </div>
+              <h3 class="sleek-card-title">${sub.title}</h3>
+              <p class="sleek-card-sub">${sub.semester} • ${sub.subtitle}</p>
+            </div>
+            <div class="sleek-card-footer">
+              <span>Open Syllabus &amp; Units</span>
+              <span>&#8594;</span>
+            </div>
+          </button>
+        `;
+      }).join("");
+    }
+
+    /* =========================================================================
+       OPEN DEDICATED SUBJECT VIEW
+    ========================================================================= */
+    function openSubject(subjectId) {
+      const subject = PORTAL_CATALOG.subjects.find(s => s.id === subjectId);
+      if (!subject) return;
+
+      const homeEl = document.getElementById("view-home");
+      const subjectEl = document.getElementById("view-subject");
+
+      const topicsOverviewHtml = subject.units.map(u => `
+        <div class="topic-chip">
+          <strong>Unit ${u.num}:</strong> ${u.title}
+        </div>
+      `).join("");
+
+      const unitCardsHtml = subject.units.map(unit => {
+        const isLive = unit.status === "available";
+        const badgeHtml = isLive
+          ? `<span class="card-pill-ice">Available</span>`
+          : `<span class="card-pill-muted">Coming Soon</span>`;
+
+        const bottomHtml = isLive
+          ? `
+            <div class="unit-card-actions">
+              <button type="button"
+                onclick="openPdfViewer('${escapeAttr(subject.title)}', 'Unit ${unit.num}: ${escapeAttr(unit.title)}', '${unit.previewUrl}', '${unit.viewUrl}', '${unit.downloadUrl}')"
+                class="btn-view-ice">
+                <span>View</span>
+              </button>
+              <a href="${unit.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
+                <span>Download &#8595;</span>
+              </a>
+            </div>
+          `
+          : `
+            <div class="unit-scheduled-bar" onclick="openComingSoonModal('${escapeAttr(subject.title)}', 'Unit ${unit.num}: ${escapeAttr(unit.title)}')">
+              <span>&#9203; Scheduled Upload</span>
+              <span>Info &#8594;</span>
+            </div>
+          `;
+
+        return `
+          <article class="sleek-card" ${!isLive ? `onclick="openComingSoonModal('${escapeAttr(subject.title)}', 'Unit ${unit.num}: ${escapeAttr(unit.title)}')"` : ""}>
+            <div>
+              <div class="card-top-row">
+                <span class="card-icon-badge">U${unit.num}</span>
+                ${badgeHtml}
+              </div>
+              <h3 class="sleek-card-title">${unit.title}</h3>
+              <p class="sleek-card-sub">${unit.topics}</p>
+            </div>
+            ${bottomHtml}
+          </article>
+        `;
+      }).join("");
+
+      subjectEl.innerHTML = `
+        <!-- SUBJECT HEADER -->
+        <section class="luxury-surface subject-header-card">
+          <div class="subject-nav-bar">
+            <button type="button" onclick="navigateHome()" class="btn-back-home">
+              <span>&#8592;</span>
+              <span>Back to Subjects</span>
+            </button>
+            <span class="card-pill-gold">${subject.code} • ${subject.semester}</span>
+          </div>
+
+          <h1 class="subject-main-title">${subject.title}</h1>
+          <p class="section-subtitle">${subject.subtitle}</p>
+
+          <div class="topics-strip">
+            <div class="topics-strip-label">Unit-Wise Syllabus Overview (Units 01 – 05)</div>
+            <div class="topics-strip-grid">${topicsOverviewHtml}</div>
+          </div>
+        </section>
+
+        <!-- 01. SEPARATE FULL-WIDTH OFFICIAL SYLLABUS CARD WITH SMOOTH HOVER -->
+        <section class="syllabus-full-card" aria-label="Official Syllabus Copy">
+          <div>
+            <span class="step-eyebrow">01 • Official University Syllabus</span>
+            <h2 class="syllabus-card-heading">${subject.syllabus.title}</h2>
+            <p class="syllabus-card-desc">Verified semester curriculum copy with complete unit-wise topics and reference textbooks.</p>
+          </div>
+          <div class="dual-action-row">
+            <button type="button"
+              onclick="openPdfViewer('${escapeAttr(subject.title)}', '${escapeAttr(subject.syllabus.title)}', '${subject.syllabus.previewUrl}', '${subject.syllabus.viewUrl}', '${subject.syllabus.downloadUrl}')"
+              class="btn-view-ice">
+              <span>View Syllabus</span>
+            </button>
+            <a href="${subject.syllabus.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
+              <span>Download &#8595;</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- 02. SEPARATE UNIT-WISE LECTURE NOTES CARDS GRID -->
+        <section aria-label="Unit-Wise Lecture Notes">
+          <div class="section-header">
+            <div>
+              <span class="step-eyebrow">02 • Unit-Wise Lecture Notes</span>
+              <h2 class="section-title">Units 01 – 05 Study Material</h2>
+            </div>
+          </div>
+          <div class="sleek-cards-grid">${unitCardsHtml}</div>
+        </section>
+      `;
+
+      homeEl.classList.add("hidden");
+      subjectEl.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function navigateHome() {
+      document.getElementById("view-subject").classList.add("hidden");
+      document.getElementById("view-home").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /* =========================================================================
+       DOCUMENT VIEWER & COMING SOON MODAL (VIEW & DOWNLOAD ONLY — NO PRINT)
+    ========================================================================= */
+    function openPdfViewer(subjectTitle, docTitle, previewUrl, viewUrl, downloadUrl) {
+      const modal = document.getElementById("doc-viewer-modal");
+      const frame = document.getElementById("modal-pdf-frame");
+      const msg = document.getElementById("modal-message");
+      const actions = document.getElementById("modal-footer-actions");
+
+      document.getElementById("modal-tag").textContent = "Verified Document";
+      document.getElementById("modal-heading").textContent = docTitle;
+      document.getElementById("modal-subheading").textContent = subjectTitle;
+
+      frame.src = previewUrl;
+      frame.classList.remove("hidden");
+      msg.classList.add("hidden");
+
+      document.getElementById("modal-open-tab-btn").href = viewUrl;
+      document.getElementById("modal-download-btn").href = downloadUrl;
+      actions.classList.remove("hidden");
+
+      modal.classList.remove("hidden");
+    }
+
+    function openComingSoonModal(subjectTitle, unitTitle) {
+      const modal = document.getElementById("doc-viewer-modal");
+      const frame = document.getElementById("modal-pdf-frame");
+      const msg = document.getElementById("modal-message");
+      const actions = document.getElementById("modal-footer-actions");
+
+      document.getElementById("modal-tag").textContent = "Scheduled Release";
+      document.getElementById("modal-heading").textContent = unitTitle;
+      document.getElementById("modal-subheading").textContent = subjectTitle;
+
+      frame.src = "";
+      frame.classList.add("hidden");
+      actions.classList.add("hidden");
+
+      msg.textContent = "Lecture notes for this unit are currently being finalized by Pilli Lalith Sriharsha. Please check back soon or reach out via Student Helpline (9493471854).";
+      msg.classList.remove("hidden");
+
+      modal.classList.remove("hidden");
+    }
+
+    function closeDocModal() {
+      const modal = document.getElementById("doc-viewer-modal");
+      const frame = document.getElementById("modal-pdf-frame");
+      frame.src = "";
+      modal.classList.add("hidden");
+    }
+
+    function escapeAttr(str) {
+      return String(str).replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    }
+
+    document.getElementById("doc-viewer-modal").addEventListener("click", function (e) {
+      if (e.target.id === "doc-viewer-modal") closeDocModal();
+    });
+
+    // Support Ctrl+S / Cmd+S saving with exact build version filename
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeDocModal();
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
+        e.preventDefault();
+        const blob = new Blob([document.documentElement.outerHTML], { type: "text/html;charset=utf-8" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = BUILD_VERSION_FILENAME;
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", renderHomeSubjects);
+  </script>
+</body>
+</html>
