@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <!-- Internal Build Version: Web v31 (Hidden from public UI, preserved in title & download filename) -->
-  <title>Academic Lecture Hub — Web v31</title>
-  <meta name="description" content="Academic Lecture Hub by Pilli Lalith Sriharsha, Master's in Computer Science — Official Syllabi & Unit-Wise Lecture Notes.">
+  <!-- Internal Build Version: Web v36 (Hidden from public UI, preserved in title & download filename) -->
+  <title>Academic Lecture Hub — Web v36</title>
+  <meta name="description" content="Academic Lecture Hub by Pilli Lalith Sriharsha, Master's in Computer Science — Official Syllabi & Unit-Wise Lecture Notes with Bilingual FIT Support.">
 
   <style>
     /* =========================================================================
@@ -104,7 +104,7 @@
     }
 
     /* =========================================================================
-       3. CLEAN TOP HEADER (NO NIGHT TOGGLE, NO PORTFOLIO BTN, NO VERSION BADGE)
+       3. CLEAN TOP HEADER
     ========================================================================= */
     .site-header {
       position: sticky;
@@ -170,7 +170,7 @@
     }
 
     /* =========================================================================
-       4. HOME VIEW: EXECUTIVE PROFILE CARD (ENLARGED PHOTO + MEDIUM BUTTONS)
+       4. HOME VIEW: EXECUTIVE PROFILE CARD
     ========================================================================= */
     .main-stack {
       flex: 1 0 auto;
@@ -249,7 +249,6 @@
       }
     }
 
-    /* Balanced Medium-Sized Contact Buttons */
     .contact-actions-row {
       display: flex;
       flex-wrap: wrap;
@@ -321,7 +320,6 @@
       margin-top: 1px;
     }
 
-    /* Enlarged Portrait Profile Photo (Home View Only) */
     .portrait-frame {
       width: 128px;
       height: 156px;
@@ -388,7 +386,7 @@
     }
 
     /* =========================================================================
-       5. SLEEK SIDE-BY-SIDE CARDS GRID (HOME SUBJECTS & UNIT CARDS)
+       5. SLEEK SIDE-BY-SIDE CARDS GRID
     ========================================================================= */
     .section-header {
       display: flex;
@@ -440,7 +438,6 @@
       box-shadow: 0 0 8px var(--ice-blue-bright);
     }
 
-    /* 2 Sleek Cards Side-by-Side on Mobile, 3 Sleek Cards on Desktop */
     .sleek-cards-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -454,7 +451,6 @@
       }
     }
 
-    /* Sleek Narrower Card with Preserved Height & Luxury Hover Glow */
     .sleek-card {
       text-align: left;
       min-height: 215px;
@@ -582,7 +578,7 @@
     }
 
     /* =========================================================================
-       6. DEDICATED SUBJECT VIEW (FULL-WIDTH SYLLABUS CARD + UNIT CARDS GRID)
+       6. DEDICATED SUBJECT VIEW & DISTINCT LANGUAGE SECTION BELOW SYLLABUS
     ========================================================================= */
     .subject-view-stack {
       display: flex;
@@ -643,7 +639,6 @@
       }
     }
 
-    /* Unit-Wise Topics Overview Strip Under Subject Heading */
     .topics-strip {
       margin-top: 16px;
       padding: 14px;
@@ -686,7 +681,6 @@
       color: var(--gold-light);
     }
 
-    /* Separate Full-Width Official Syllabus Card with Smooth Hover Effect */
     .syllabus-full-card {
       padding: 20px;
       border-radius: 20px;
@@ -738,7 +732,59 @@
       margin-top: 4px;
     }
 
-    /* Action Buttons: ONLY View & Download (NO Print Anywhere) */
+    /* Distinct Language Selection Section right below Syllabus Card */
+    .language-selection-section {
+      padding: 16px 20px;
+      border-radius: 16px;
+      background: rgba(13, 19, 34, 0.85);
+      border: 1px solid var(--ice-blue-border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .language-selection-section {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .lang-section-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ice-blue-light);
+    }
+
+    .lang-toggle-bar {
+      display: inline-flex;
+      background: rgba(7, 11, 20, 0.95);
+      border: 1px solid var(--border-hairline);
+      border-radius: 12px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .lang-btn {
+      padding: 7px 16px;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: transparent;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+    }
+
     .dual-action-row {
       display: flex;
       flex-wrap: wrap;
@@ -815,7 +861,7 @@
     }
 
     /* =========================================================================
-       7. FOOTER (WEB V29 LAYOUT) & DOCUMENT VIEWER MODAL
+       7. FOOTER & DOCUMENT VIEWER MODAL
     ========================================================================= */
     .site-footer {
       margin-top: auto;
@@ -909,7 +955,7 @@
 <body>
 
   <!-- =====================================================================
-       CLEAN TOP HEADER (NO NIGHT TOGGLE, NO PORTFOLIO BTN, NO VERSION BADGE)
+       CLEAN TOP HEADER
   ====================================================================== -->
   <header class="site-header shell">
     <div class="header-bar">
@@ -931,7 +977,7 @@
     <!-- VIEW 1: HOME VIEW -->
     <div id="view-home" class="main-stack">
 
-      <!-- EXECUTIVE PROFILE CARD (ENLARGED PORTRAIT + BALANCED MEDIUM CONTACT BUTTONS) -->
+      <!-- EXECUTIVE PROFILE CARD -->
       <section class="luxury-surface profile-hero-card" aria-label="Faculty Profile">
         <div class="profile-flex-row">
           <div class="profile-details-col">
@@ -941,7 +987,6 @@
               <p class="faculty-qual">Master's in Computer Science</p>
             </div>
 
-            <!-- Balanced Medium-Sized Contact Buttons -->
             <div class="contact-actions-row">
               <a href="tel:+919493471854" class="contact-btn-medium" aria-label="Call Student Helpline 9493471854">
                 <span class="contact-btn-icon icon-gold-box">&#9742;</span>
@@ -961,7 +1006,6 @@
             </div>
           </div>
 
-          <!-- Enlarged Portrait Profile Photo (Home View Only) -->
           <div class="portrait-frame" title="Pilli Lalith Sriharsha — Master's in Computer Science">
             <div class="portrait-inner">
               <img
@@ -978,7 +1022,7 @@
         </div>
       </section>
 
-      <!-- CORE SUBJECTS SECTION (ALL SUBJECTS UNLOCKED FOR STUDENT ACCESS) -->
+      <!-- CORE SUBJECTS SECTION -->
       <section aria-label="Academic Subjects">
         <div class="section-header">
           <div>
@@ -992,7 +1036,7 @@
         </div>
 
         <div id="home-subjects-grid" class="sleek-cards-grid">
-          <!-- Dynamically populated from frozen PORTAL_CATALOG -->
+          <!-- Dynamically populated from PORTAL_CATALOG -->
         </div>
       </section>
 
@@ -1006,7 +1050,7 @@
   </main>
 
   <!-- =====================================================================
-       COMPACT FOOTER (UPDATED WEB V29 STRUCTURE)
+       COMPACT FOOTER
   ====================================================================== -->
   <footer class="site-footer shell">
     <div class="footer-bar">
@@ -1020,7 +1064,7 @@
   </footer>
 
   <!-- =====================================================================
-       DOCUMENT VIEWER MODAL (VIEW & DOWNLOAD ONLY — NO PRINT BUTTON)
+       DOCUMENT VIEWER MODAL
   ====================================================================== -->
   <div id="doc-viewer-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
     <div class="modal-dialog">
@@ -1048,10 +1092,10 @@
   </div>
 
   <!-- =====================================================================
-       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V31)
+       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V36)
   ====================================================================== -->
   <script>
-    const BUILD_VERSION_FILENAME = "Academic Lecture Hub — Web v31.html";
+    const BUILD_VERSION_FILENAME = "Academic Lecture Hub — Web v36.html";
 
     const PORTAL_CATALOG = {
       profile: {
@@ -1069,6 +1113,7 @@
           semester: "Semester I",
           title: "Fundamentals of Information Technology",
           subtitle: "Office Automation, Computer Architecture, Networking & Data Modelling",
+          isBilingual: true,
           syllabus: {
             title: "FIT Official University Syllabus Copy",
             status: "available",
@@ -1082,9 +1127,16 @@
               title: "Block Diagram, Generations, Evolution & Number System",
               topics: "Block Diagram of the Computer • Generations of Computers • Evolution of the Computer • Number System.",
               status: "available",
-              viewUrl: "https://drive.google.com/file/d/1CR2NMyzY5oJwGanXIPM9kjAx9xT1P_vH/view?usp=drive_link",
-              previewUrl: "https://drive.google.com/file/d/1CR2NMyzY5oJwGanXIPM9kjAx9xT1P_vH/preview",
-              downloadUrl: "https://drive.google.com/uc?export=download&id=1CR2NMyzY5oJwGanXIPM9kjAx9xT1P_vH"
+              english: {
+                viewUrl: "https://drive.google.com/file/d/1CR2NMyzY5oJwGanXIPM9kjAx9xT1P_vH/view?usp=drive_link",
+                previewUrl: "https://drive.google.com/file/d/1CR2NMyzY5oJwGanXIPM9kjAx9xT1P_vH/preview",
+                downloadUrl: "https://drive.google.com/uc?export=download&id=1CR2NMyzY5oJwGanXIPM9kjAx9xT1P_vH"
+              },
+              telugu: {
+                viewUrl: "https://drive.google.com/file/d/1tcN2g5N382v808lkint-nuCOAY8KaFAb/view?usp=drive_link",
+                previewUrl: "https://drive.google.com/file/d/1tcN2g5N382v808lkint-nuCOAY8KaFAb/preview",
+                downloadUrl: "https://drive.google.com/uc?export=download&id=1tcN2g5N382v808lkint-nuCOAY8KaFAb"
+              }
             },
             {
               num: "02",
@@ -1118,6 +1170,7 @@
           semester: "Semester V",
           title: "Internet of Things",
           subtitle: "IoT Fundamentals, Smart Sensors, Wireless Protocols & Cloud Platforms",
+          isBilingual: false,
           syllabus: {
             title: "IoT Official University Syllabus Copy",
             status: "available",
@@ -1131,9 +1184,11 @@
               title: "Fundamentals and Applications of IoT",
               topics: "Definitions, Characteristics, Architectures, Physical/Logical Design, Enabling Technologies & Applications.",
               status: "available",
-              viewUrl: "https://drive.google.com/file/d/1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z/view?usp=drive_link",
-              previewUrl: "https://drive.google.com/file/d/1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z/preview",
-              downloadUrl: "https://drive.google.com/uc?export=download&id=1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z"
+              english: {
+                viewUrl: "https://drive.google.com/file/d/1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z/view?usp=drive_link",
+                previewUrl: "https://drive.google.com/file/d/1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z/preview",
+                downloadUrl: "https://drive.google.com/uc?export=download&id=1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z"
+              }
             },
             {
               num: "02",
@@ -1167,6 +1222,7 @@
           semester: "Semester III",
           title: "Computer Organisation",
           subtitle: "Register Transfer, Microprogrammed Control, Memory Hierarchy & Arithmetic",
+          isBilingual: false,
           syllabus: {
             title: "Computer Organisation Official Syllabus Copy",
             status: "available",
@@ -1180,9 +1236,11 @@
               title: "Register Transfer Language & Micro Operations",
               topics: "Computer Registers, Bus/Memory Transfers, Arithmetic/Logic/Shift Micro-operations & Instruction Cycle.",
               status: "available",
-              viewUrl: "https://drive.google.com/file/d/1U5iTlIh6Dg6CW8urQ5R1Ck5C5ZvTEHlj/view?usp=drive_link",
-              previewUrl: "https://drive.google.com/file/d/1U5iTlIh6Dg6CW8urQ5R1Ck5C5ZvTEHlj/preview",
-              downloadUrl: "https://drive.google.com/uc?export=download&id=1U5iTlIh6Dg6CW8urQ5R1Ck5C5ZvTEHlj"
+              english: {
+                viewUrl: "https://drive.google.com/file/d/1U5iTlIh6Dg6CW8urQ5R1Ck5C5ZvTEHlj/view?usp=drive_link",
+                previewUrl: "https://drive.google.com/file/d/1U5iTlIh6Dg6CW8urQ5R1Ck5C5ZvTEHlj/preview",
+                downloadUrl: "https://drive.google.com/uc?export=download&id=1U5iTlIh6Dg6CW8urQ5R1Ck5C5ZvTEHlj"
+              }
             },
             {
               num: "02",
@@ -1213,20 +1271,18 @@
       ]
     };
 
-    // Deep-freeze catalog data so runtime state cannot be modified unexpectedly
+    // Safe deep freeze utility definition
     function deepFreeze(obj) {
-      Object.keys(obj).forEach(key => {
-        if (obj[key] && typeof obj[key] === "object") {
-          deepFreeze(obj[key]);
-        }
-      });
-      return Object.freeze(obj);
+      if (obj && typeof obj === 'object' && !Object.isFrozen(obj)) {
+        Object.getOwnPropertyNames(obj).forEach(prop => {
+          deepFreeze(obj[prop]);
+        });
+        Object.freeze(obj);
+      }
+      return obj;
     }
     deepFreeze(PORTAL_CATALOG);
 
-    /* =========================================================================
-       PORTRAIT FALLBACK HANDLER (HOME VIEW ONLY)
-    ========================================================================= */
     function handlePortraitFallback(img) {
       const step = parseInt(img.getAttribute("data-step") || "0", 10);
       if (step === 0) {
@@ -1239,9 +1295,6 @@
       }
     }
 
-    /* =========================================================================
-       RENDER UNLOCKED HOME SUBJECT CARDS
-    ========================================================================= */
     function renderHomeSubjects() {
       const grid = document.getElementById("home-subjects-grid");
       if (!grid) return;
@@ -1271,15 +1324,32 @@
       }).join("");
     }
 
-    /* =========================================================================
-       OPEN DEDICATED SUBJECT VIEW
-    ========================================================================= */
+    const subjectLangState = {};
+
     function openSubject(subjectId) {
       const subject = PORTAL_CATALOG.subjects.find(s => s.id === subjectId);
       if (!subject) return;
 
+      if (!subjectLangState[subjectId]) {
+        subjectLangState[subjectId] = 'english';
+      }
+
+      renderSubjectView(subject);
+    }
+
+    function switchSyllabusLang(subjectId, lang) {
+      subjectLangState[subjectId] = lang;
+      const subject = PORTAL_CATALOG.subjects.find(s => s.id === subjectId);
+      if (subject) {
+        renderSubjectView(subject);
+      }
+    }
+
+    function renderSubjectView(subject) {
       const homeEl = document.getElementById("view-home");
       const subjectEl = document.getElementById("view-subject");
+      const currentLang = subjectLangState[subject.id] || 'english';
+      const syllabusData = subject.syllabus;
 
       const topicsOverviewHtml = subject.units.map(u => `
         <div class="topic-chip">
@@ -1290,31 +1360,47 @@
       const unitCardsHtml = subject.units.map(unit => {
         const isLive = unit.status === "available";
         const badgeHtml = isLive
-          ? `<span class="card-pill-ice">Available</span>`
+          ? `<span class="card-pill-ice">${currentLang === 'telugu' && unit.num === '01' ? 'Telugu PDF' : 'Available'}</span>`
           : `<span class="card-pill-muted">Coming Soon</span>`;
 
-        const bottomHtml = isLive
+        let activeDoc = unit.english;
+        if (subject.isBilingual && currentLang === 'telugu' && unit.telugu) {
+          activeDoc = unit.telugu;
+        }
+
+        const bottomHtml = isLive && activeDoc
           ? `
             <div class="unit-card-actions">
               <button type="button"
-                onclick="openPdfViewer('${escapeAttr(subject.title)}', 'Unit ${unit.num}: ${escapeAttr(unit.title)}', '${unit.previewUrl}', '${unit.viewUrl}', '${unit.downloadUrl}')"
+                onclick="openPdfViewer('${escapeAttr(subject.title)}', 'Unit ${unit.num}: ${escapeAttr(unit.title)} (${currentLang.toUpperCase()})', '${activeDoc.previewUrl}', '${activeDoc.viewUrl}', '${activeDoc.downloadUrl}')"
                 class="btn-view-ice">
                 <span>View</span>
               </button>
-              <a href="${unit.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
+              <a href="${activeDoc.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
                 <span>Download &#8595;</span>
               </a>
             </div>
           `
-          : `
+          : (isLive && unit.english ? `
+            <div class="unit-card-actions">
+              <button type="button"
+                onclick="openPdfViewer('${escapeAttr(subject.title)}', 'Unit ${unit.num}: ${escapeAttr(unit.title)}', '${unit.english.previewUrl}', '${unit.english.viewUrl}', '${unit.english.downloadUrl}')"
+                class="btn-view-ice">
+                <span>View</span>
+              </button>
+              <a href="${unit.english.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
+                <span>Download &#8595;</span>
+              </a>
+            </div>
+          ` : `
             <div class="unit-scheduled-bar" onclick="openComingSoonModal('${escapeAttr(subject.title)}', 'Unit ${unit.num}: ${escapeAttr(unit.title)}')">
               <span>&#9203; Scheduled Upload</span>
               <span>Info &#8594;</span>
             </div>
-          `;
+          `);
 
         return `
-          <article class="sleek-card" ${!isLive ? `onclick="openComingSoonModal('${escapeAttr(subject.title)}', 'Unit ${unit.num}: ${escapeAttr(unit.title)}')"` : ""}>
+          <article class="sleek-card">
             <div>
               <div class="card-top-row">
                 <span class="card-icon-badge">U${unit.num}</span>
@@ -1327,6 +1413,23 @@
           </article>
         `;
       }).join("");
+
+      // Distinct Language Selection Section specifically for FIT below the syllabus card
+      let languageSelectionHtml = "";
+      if (subject.isBilingual) {
+        languageSelectionHtml = `
+          <div class="language-selection-section">
+            <div>
+              <span class="lang-section-label">Select Study Material Language (Unit 01 Switch)</span>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 2px;">Switching language dynamically updates Unit 01 document between English and Telugu.</p>
+            </div>
+            <div class="lang-toggle-bar">
+              <button type="button" class="lang-btn ${currentLang === 'english' ? 'active' : ''}" onclick="switchSyllabusLang('${subject.id}', 'english')">English Version</button>
+              <button type="button" class="lang-btn ${currentLang === 'telugu' ? 'active' : ''}" onclick="switchSyllabusLang('${subject.id}', 'telugu')">తెలుగు వెర్షన్</button>
+            </div>
+          </div>
+        `;
+      }
 
       subjectEl.innerHTML = `
         <!-- SUBJECT HEADER -->
@@ -1348,30 +1451,33 @@
           </div>
         </section>
 
-        <!-- 01. SEPARATE FULL-WIDTH OFFICIAL SYLLABUS CARD WITH SMOOTH HOVER -->
+        <!-- 01. STABLE OFFICIAL SYLLABUS CARD -->
         <section class="syllabus-full-card" aria-label="Official Syllabus Copy">
           <div>
             <span class="step-eyebrow">01 • Official University Syllabus</span>
-            <h2 class="syllabus-card-heading">${subject.syllabus.title}</h2>
+            <h2 class="syllabus-card-heading">${syllabusData.title}</h2>
             <p class="syllabus-card-desc">Verified semester curriculum copy with complete unit-wise topics and reference textbooks.</p>
           </div>
           <div class="dual-action-row">
             <button type="button"
-              onclick="openPdfViewer('${escapeAttr(subject.title)}', '${escapeAttr(subject.syllabus.title)}', '${subject.syllabus.previewUrl}', '${subject.syllabus.viewUrl}', '${subject.syllabus.downloadUrl}')"
+              onclick="openPdfViewer('${escapeAttr(subject.title)}', '${escapeAttr(syllabusData.title)}', '${syllabusData.previewUrl}', '${syllabusData.viewUrl}', '${syllabusData.downloadUrl}')"
               class="btn-view-ice">
               <span>View Syllabus</span>
             </button>
-            <a href="${subject.syllabus.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
+            <a href="${syllabusData.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
               <span>Download &#8595;</span>
             </a>
           </div>
         </section>
 
-        <!-- 02. SEPARATE UNIT-WISE LECTURE NOTES CARDS GRID -->
+        <!-- DISTINCT LANGUAGE TOGGLE SECTION RIGHT BELOW SYLLABUS CARD (ONLY FOR FIT) -->
+        ${languageSelectionHtml}
+
+        <!-- 02. UNIT-WISE LECTURE NOTES CARDS GRID -->
         <section aria-label="Unit-Wise Lecture Notes">
           <div class="section-header">
             <div>
-              <span class="step-eyebrow">02 • Unit-Wise Lecture Notes</span>
+              <span class="step-eyebrow">02 • Unit-Wise Lecture Notes (${currentLang === 'telugu' ? 'Telugu Active for U1' : 'English Active'})</span>
               <h2 class="section-title">Units 01 – 05 Study Material</h2>
             </div>
           </div>
@@ -1390,9 +1496,6 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    /* =========================================================================
-       DOCUMENT VIEWER & COMING SOON MODAL (VIEW & DOWNLOAD ONLY — NO PRINT)
-    ========================================================================= */
     function openPdfViewer(subjectTitle, docTitle, previewUrl, viewUrl, downloadUrl) {
       const modal = document.getElementById("doc-viewer-modal");
       const frame = document.getElementById("modal-pdf-frame");
@@ -1449,7 +1552,6 @@
       if (e.target.id === "doc-viewer-modal") closeDocModal();
     });
 
-    // Support Ctrl+S / Cmd+S saving with exact build version filename
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeDocModal();
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
