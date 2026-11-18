@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <!-- Internal Build Version: Web v36 (Hidden from public UI, preserved in title & download filename) -->
-  <title>Academic Lecture Hub — Web v36</title>
-  <meta name="description" content="Academic Lecture Hub by Pilli Lalith Sriharsha, Master's in Computer Science — Official Syllabi & Unit-Wise Lecture Notes with Bilingual FIT Support.">
+  <!-- Internal Build Version: Web v42 (Hidden from public UI, preserved in title & download filename) -->
+  <title>Academic Lecture Hub — Web v42</title>
+  <meta name="description" content="Academic Lecture Hub by Pilli Lalith Sriharsha, Master's in Computer Science — Official Syllabi & Unit-Wise Lecture Notes.">
 
   <style>
     /* =========================================================================
@@ -453,7 +453,7 @@
 
     .sleek-card {
       text-align: left;
-      min-height: 215px;
+      min-height: 245px;
       padding: 15px;
       border-radius: 18px;
       background: linear-gradient(160deg, #0E1526 0%, #090E1A 100%);
@@ -462,7 +462,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 14px;
+      gap: 12px;
       cursor: pointer;
       transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
                   border-color 0.28s ease,
@@ -471,7 +471,7 @@
 
     @media (min-width: 768px) {
       .sleek-card {
-        min-height: 230px;
+        min-height: 260px;
         padding: 18px;
       }
     }
@@ -549,7 +549,7 @@
       font-weight: 700;
       line-height: 1.32;
       color: var(--text-primary);
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     @media (min-width: 768px) {
@@ -559,14 +559,35 @@
     }
 
     .sleek-card-sub {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
+      margin-top: 3px;
+      line-height: 1.35;
+    }
+
+    /* Non-Clickable Group Display Badges Container inside Subject Card */
+    .subject-group-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
       margin-top: 5px;
-      line-height: 1.4;
+    }
+
+    .group-display-chip {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 6px;
+      font-size: 9.5px;
+      font-weight: 700;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      color: var(--ice-blue-light);
+      pointer-events: none; /* strictly non-clickable display badge */
+      user-select: none;
     }
 
     .sleek-card-footer {
-      padding-top: 10px;
+      padding-top: 8px;
       border-top: 1px solid var(--border-hairline);
       display: flex;
       align-items: center;
@@ -1092,10 +1113,10 @@
   </div>
 
   <!-- =====================================================================
-       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V36)
+       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V42)
   ====================================================================== -->
   <script>
-    const BUILD_VERSION_FILENAME = "Academic Lecture Hub — Web v36.html";
+    const BUILD_VERSION_FILENAME = "Academic Lecture Hub — Web v42.html";
 
     const PORTAL_CATALOG = {
       profile: {
@@ -1112,8 +1133,9 @@
           code: "FIT",
           semester: "Semester I",
           title: "Fundamentals of Information Technology",
-          subtitle: "Office Automation, Computer Architecture, Networking & Data Modelling",
+          subtitle: "Office Automation, Networking & Data Modelling",
           isBilingual: true,
+          groups: ["1st B.Com General", "1st B.Com Computers", "1st B.Sc Computers", "2nd Yr Chemistry"],
           syllabus: {
             title: "FIT Official University Syllabus Copy",
             status: "available",
@@ -1165,64 +1187,13 @@
           ]
         },
         {
-          id: "iot",
-          code: "IoT",
-          semester: "Semester V",
-          title: "Internet of Things",
-          subtitle: "IoT Fundamentals, Smart Sensors, Wireless Protocols & Cloud Platforms",
-          isBilingual: false,
-          syllabus: {
-            title: "IoT Official University Syllabus Copy",
-            status: "available",
-            viewUrl: "https://drive.google.com/file/d/1DBkeNKjF3ywuvwII03h18R5UffTT1716/view?usp=drive_link",
-            previewUrl: "https://drive.google.com/file/d/1DBkeNKjF3ywuvwII03h18R5UffTT1716/preview",
-            downloadUrl: "https://drive.google.com/uc?export=download&id=1DBkeNKjF3ywuvwII03h18R5UffTT1716"
-          },
-          units: [
-            {
-              num: "01",
-              title: "Fundamentals and Applications of IoT",
-              topics: "Definitions, Characteristics, Architectures, Physical/Logical Design, Enabling Technologies & Applications.",
-              status: "available",
-              english: {
-                viewUrl: "https://drive.google.com/file/d/1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z/view?usp=drive_link",
-                previewUrl: "https://drive.google.com/file/d/1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z/preview",
-                downloadUrl: "https://drive.google.com/uc?export=download&id=1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z"
-              }
-            },
-            {
-              num: "02",
-              title: "Sensors Networks, Arduino & Raspberry Pi",
-              topics: "Sensors, Actuators, Arduino IDE & Boards, Raspberry Pi Kit, RFID & Wireless Sensor Networks.",
-              status: "coming_soon"
-            },
-            {
-              num: "03",
-              title: "Wireless Technologies & IP-Based Protocols",
-              topics: "IEEE 802.15.4, Zigbee, BLE, Z-Wave, IPv6, 6LoWPAN, LoRa, CoAP & MQTT.",
-              status: "coming_soon"
-            },
-            {
-              num: "04",
-              title: "Arduino Simulation, Interfacing & Actuators",
-              topics: "Arduino Uno Architecture, Embedded C, LED/LCD, Temperature/Motion/Gas Sensors & Relay/Servo.",
-              status: "coming_soon"
-            },
-            {
-              num: "05",
-              title: "Developing IoTs, Cloud Platforms & Security",
-              topics: "Blynk, ThingSpeak, AWS IoT, Google Cloud IoT, Fog Computing, Privacy & Security.",
-              status: "coming_soon"
-            }
-          ]
-        },
-        {
           id: "co",
           code: "CO",
           semester: "Semester III",
           title: "Computer Organisation",
-          subtitle: "Register Transfer, Microprogrammed Control, Memory Hierarchy & Arithmetic",
+          subtitle: "Register Transfer, Microprogrammed Control & Arithmetic",
           isBilingual: false,
+          groups: ["2nd B.Sc Computers"],
           syllabus: {
             title: "Computer Organisation Official Syllabus Copy",
             status: "available",
@@ -1267,11 +1238,63 @@
               status: "coming_soon"
             }
           ]
+        },
+        {
+          id: "iot",
+          code: "IoT",
+          semester: "Semester V",
+          title: "Internet of Things",
+          subtitle: "IoT Fundamentals, Smart Sensors & Cloud Platforms",
+          isBilingual: false,
+          groups: ["3rd B.Sc Computers"],
+          syllabus: {
+            title: "IoT Official University Syllabus Copy",
+            status: "available",
+            viewUrl: "https://drive.google.com/file/d/1DBkeNKjF3ywuvwII03h18R5UffTT1716/view?usp=drive_link",
+            previewUrl: "https://drive.google.com/file/d/1DBkeNKjF3ywuvwII03h18R5UffTT1716/preview",
+            downloadUrl: "https://drive.google.com/uc?export=download&id=1DBkeNKjF3ywuvwII03h18R5UffTT1716"
+          },
+          units: [
+            {
+              num: "01",
+              title: "Fundamentals and Applications of IoT",
+              topics: "Definitions, Characteristics, Architectures, Physical/Logical Design, Enabling Technologies & Applications.",
+              status: "available",
+              english: {
+                viewUrl: "https://drive.google.com/file/d/1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z/view?usp=drive_link",
+                previewUrl: "https://drive.google.com/file/d/1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z/preview",
+                downloadUrl: "https://drive.google.com/uc?export=download&id=1fMC8kvlDZzCn8MtMvqmYzfj2tJb8mk3Z"
+              }
+            },
+            {
+              num: "02",
+              title: "Sensors Networks, Arduino & Raspberry Pi",
+              topics: "Sensors, Actuators, Arduino IDE & Boards, Raspberry Pi Kit, RFID & Wireless Sensor Networks.",
+              status: "coming_soon"
+            },
+            {
+              num: "03",
+              title: "Wireless Technologies & IP-Based Protocols",
+              topics: "IEEE 802.15.4, Zigbee, BLE, Z-Wave, IPv6, 6LoWPAN, LoRa, CoAP & MQTT.",
+              status: "coming_soon"
+            },
+            {
+              num: "04",
+              title: "Arduino Simulation, Interfacing & Actuators",
+              topics: "Arduino Uno Architecture, Embedded C, LED/LCD, Temperature/Motion/Gas Sensors & Relay/Servo.",
+              status: "coming_soon"
+            },
+            {
+              num: "05",
+              title: "Developing IoTs, Cloud Platforms & Security",
+              topics: "Blynk, ThingSpeak, AWS IoT, Google Cloud IoT, Fog Computing, Privacy & Security.",
+              status: "coming_soon"
+            }
+          ]
         }
       ]
     };
 
-    // Safe deep freeze utility definition
     function deepFreeze(obj) {
       if (obj && typeof obj === 'object' && !Object.isFrozen(obj)) {
         Object.getOwnPropertyNames(obj).forEach(prop => {
@@ -1305,6 +1328,12 @@
           ? `<span class="card-pill-ice">Unit 01 Live</span>`
           : `<span class="card-pill-gold">Syllabus Live</span>`;
 
+        const groupBadgesHtml = (sub.groups && sub.groups.length > 0) ? `
+          <div class="subject-group-badges-row">
+            ${sub.groups.map(g => `<span class="group-display-chip">${g}</span>`).join('')}
+          </div>
+        ` : '';
+
         return `
           <button type="button" onclick="openSubject('${sub.id}')" class="sleek-card" aria-label="Open ${sub.title}">
             <div>
@@ -1314,6 +1343,7 @@
               </div>
               <h3 class="sleek-card-title">${sub.title}</h3>
               <p class="sleek-card-sub">${sub.semester} • ${sub.subtitle}</p>
+              ${groupBadgesHtml}
             </div>
             <div class="sleek-card-footer">
               <span>Open Syllabus &amp; Units</span>
@@ -1414,7 +1444,6 @@
         `;
       }).join("");
 
-      // Distinct Language Selection Section specifically for FIT below the syllabus card
       let languageSelectionHtml = "";
       if (subject.isBilingual) {
         languageSelectionHtml = `
@@ -1470,7 +1499,7 @@
           </div>
         </section>
 
-        <!-- DISTINCT LANGUAGE TOGGLE SECTION RIGHT BELOW SYLLABUS CARD (ONLY FOR FIT) -->
+        <!-- DEDICATED LANGUAGE TOGGLE SECTION RIGHT BELOW SYLLABUS CARD (ONLY FOR FIT) -->
         ${languageSelectionHtml}
 
         <!-- 02. UNIT-WISE LECTURE NOTES CARDS GRID -->
