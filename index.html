@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <!-- Internal Build Version: Web v43 (Hidden from public UI, preserved in title & download filename) -->
-  <title>Academic Lecture Hub — Web v43</title>
+  <!-- Internal Build Version: Web v48 (Hidden from public UI, preserved in title & download filename) -->
+  <title>Academic Hub V_48</title>
   <meta name="description" content="Academic Lecture Hub by Pilli Lalith Sriharsha, Master's in Computer Science — Official Syllabi & Unit-Wise Lecture Notes.">
 
   <style>
@@ -582,7 +582,7 @@
       background: rgba(56, 189, 248, 0.12);
       border: 1px solid rgba(56, 189, 248, 0.28);
       color: var(--ice-blue-light);
-      pointer-events: none; /* strictly non-clickable display badge */
+      pointer-events: none;
       user-select: none;
     }
 
@@ -1134,10 +1134,10 @@
   </div>
 
   <!-- =====================================================================
-       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V43)
+       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V48)
   ====================================================================== -->
   <script>
-    const BUILD_VERSION_FILENAME = "Academic Lecture Hub — Web v43.html";
+    const BUILD_VERSION_FILENAME = "Academic Hub V_48.html";
 
     const PORTAL_CATALOG = {
       profile: {
@@ -1178,9 +1178,9 @@
               topics: "Block Diagram of the Computer • Generations of Computers • Evolution of the Computer • Number System.",
               status: "available",
               english: {
-                viewUrl: "https://drive.google.com/file/d/1CR2NMyzY5oJwGanXIPM9kjAx9xT1P_vH/view?usp=drive_link",
-                previewUrl: "https://drive.google.com/file/d/1CR2NMyzY5oJwGanXIPM9kjAx9xT1P_vH/preview",
-                downloadUrl: "https://drive.google.com/uc?export=download&id=1CR2NMyzY5oJwGanXIPM9kjAx9xT1P_vH"
+                viewUrl: "https://drive.google.com/file/d/1RW08z_fsKH3FJ_cobuOsJpL9kTrnHWyX/view?usp=drive_link",
+                previewUrl: "https://drive.google.com/file/d/1RW08z_fsKH3FJ_cobuOsJpL9kTrnHWyX/preview",
+                downloadUrl: "https://drive.google.com/uc?export=download&id=1RW08z_fsKH3FJ_cobuOsJpL9kTrnHWyX"
               },
               telugu: {
                 viewUrl: "https://drive.google.com/file/d/1tcN2g5N382v808lkint-nuCOAY8KaFAb/view?usp=drive_link",
@@ -1588,6 +1588,15 @@
           </div>
           <div class="sleek-cards-grid">${unitCardsHtml}</div>
         </section>
+
+        <!-- BOTTOM BACK NAVIGATION BAR (ALL SUBJECTS) -->
+        <div class="subject-nav-bar" style="padding-top: 8px;">
+          <button type="button" onclick="navigateHome()" class="btn-back-home">
+            <span>&#8592;</span>
+            <span>Back to Subjects</span>
+          </button>
+          <span class="card-pill-gold">${subject.code} • ${subject.semester}</span>
+        </div>
       `;
 
       homeEl.classList.add("hidden");
