@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <!-- Internal Build Version: Web v42 (Hidden from public UI, preserved in title & download filename) -->
-  <title>Academic Lecture Hub — Web v42</title>
+  <!-- Internal Build Version: Web v43 (Hidden from public UI, preserved in title & download filename) -->
+  <title>Academic Lecture Hub — Web v43</title>
   <meta name="description" content="Academic Lecture Hub by Pilli Lalith Sriharsha, Master's in Computer Science — Official Syllabi & Unit-Wise Lecture Notes.">
 
   <style>
@@ -881,6 +881,27 @@
       justify-content: space-between;
     }
 
+    .btn-pending-gold {
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-pending-gold:hover {
+      border-color: var(--ice-blue);
+      color: var(--ice-blue-light);
+      transform: translateY(-1px);
+    }
+
     /* =========================================================================
        7. FOOTER & DOCUMENT VIEWER MODAL
     ========================================================================= */
@@ -1113,10 +1134,10 @@
   </div>
 
   <!-- =====================================================================
-       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V42)
+       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V43)
   ====================================================================== -->
   <script>
-    const BUILD_VERSION_FILENAME = "Academic Lecture Hub — Web v42.html";
+    const BUILD_VERSION_FILENAME = "Academic Lecture Hub — Web v43.html";
 
     const PORTAL_CATALOG = {
       profile: {
@@ -1142,6 +1163,13 @@
             viewUrl: "https://drive.google.com/file/d/1c7B5iax4mPFWpMOxat7DfKj68bcJTDzr/view?usp=sharing",
             previewUrl: "https://drive.google.com/file/d/1c7B5iax4mPFWpMOxat7DfKj68bcJTDzr/preview",
             downloadUrl: "https://drive.google.com/uc?export=download&id=1c7B5iax4mPFWpMOxat7DfKj68bcJTDzr"
+          },
+          practicals: {
+            title: "FIT Practical Questions Bank",
+            status: "coming_soon",
+            viewUrl: "",
+            previewUrl: "",
+            downloadUrl: ""
           },
           units: [
             {
@@ -1201,6 +1229,13 @@
             previewUrl: "https://drive.google.com/file/d/1FwfN5OQj3OE2XuRS7C1QrmBAkweOWFKN/preview",
             downloadUrl: "https://drive.google.com/uc?export=download&id=1FwfN5OQj3OE2XuRS7C1QrmBAkweOWFKN"
           },
+          practicals: {
+            title: "CO Practical Questions Bank",
+            status: "coming_soon",
+            viewUrl: "",
+            previewUrl: "",
+            downloadUrl: ""
+          },
           units: [
             {
               num: "01",
@@ -1246,13 +1281,20 @@
           title: "Internet of Things",
           subtitle: "IoT Fundamentals, Smart Sensors & Cloud Platforms",
           isBilingual: false,
-          groups: ["3rd B.Sc Computers"],
+          groups: ["3rd Yr Computers"],
           syllabus: {
             title: "IoT Official University Syllabus Copy",
             status: "available",
             viewUrl: "https://drive.google.com/file/d/1DBkeNKjF3ywuvwII03h18R5UffTT1716/view?usp=drive_link",
             previewUrl: "https://drive.google.com/file/d/1DBkeNKjF3ywuvwII03h18R5UffTT1716/preview",
             downloadUrl: "https://drive.google.com/uc?export=download&id=1DBkeNKjF3ywuvwII03h18R5UffTT1716"
+          },
+          practicals: {
+            title: "IoT Practical Questions Bank",
+            status: "coming_soon",
+            viewUrl: "",
+            previewUrl: "",
+            downloadUrl: ""
           },
           units: [
             {
@@ -1380,6 +1422,7 @@
       const subjectEl = document.getElementById("view-subject");
       const currentLang = subjectLangState[subject.id] || 'english';
       const syllabusData = subject.syllabus;
+      const practicalData = subject.practicals || { title: `${subject.code} Practical Questions Bank`, status: "coming_soon" };
 
       const topicsOverviewHtml = subject.units.map(u => `
         <div class="topic-chip">
@@ -1460,6 +1503,29 @@
         `;
       }
 
+      const practicalActionsHtml = (practicalData.status === "available" && practicalData.previewUrl)
+        ? `
+          <div class="dual-action-row">
+            <button type="button"
+              onclick="openPdfViewer('${escapeAttr(subject.title)}', '${escapeAttr(practicalData.title)}', '${practicalData.previewUrl}', '${practicalData.viewUrl}', '${practicalData.downloadUrl}')"
+              class="btn-view-ice">
+              <span>View Questions</span>
+            </button>
+            <a href="${practicalData.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
+              <span>Download &#8595;</span>
+            </a>
+          </div>
+        `
+        : `
+          <div class="dual-action-row">
+            <button type="button"
+              onclick="openPracticalPendingModal('${escapeAttr(subject.title)}', '${escapeAttr(practicalData.title)}')"
+              class="btn-pending-gold">
+              <span>&#9203; Upload Pending / Coming Soon</span>
+            </button>
+          </div>
+        `;
+
       subjectEl.innerHTML = `
         <!-- SUBJECT HEADER -->
         <section class="luxury-surface subject-header-card">
@@ -1499,14 +1565,24 @@
           </div>
         </section>
 
-        <!-- DEDICATED LANGUAGE TOGGLE SECTION RIGHT BELOW SYLLABUS CARD (ONLY FOR FIT) -->
+        <!-- 02. PRACTICAL QUESTIONS SECTION (ALL SUBJECTS) -->
+        <section class="syllabus-full-card" aria-label="Practical Questions">
+          <div>
+            <span class="step-eyebrow">02 • Lab &amp; Practical Assessment</span>
+            <h2 class="syllabus-card-heading">${practicalData.title}</h2>
+            <p class="syllabus-card-desc">Lab exercises, programming assignments, and viva-voce practical question bank.</p>
+          </div>
+          ${practicalActionsHtml}
+        </section>
+
+        <!-- DEDICATED LANGUAGE TOGGLE SECTION RIGHT BELOW SYLLABUS / PRACTICALS (ONLY FOR FIT) -->
         ${languageSelectionHtml}
 
-        <!-- 02. UNIT-WISE LECTURE NOTES CARDS GRID -->
+        <!-- 03. UNIT-WISE LECTURE NOTES CARDS GRID -->
         <section aria-label="Unit-Wise Lecture Notes">
           <div class="section-header">
             <div>
-              <span class="step-eyebrow">02 • Unit-Wise Lecture Notes (${currentLang === 'telugu' ? 'Telugu Active for U1' : 'English Active'})</span>
+              <span class="step-eyebrow">03 • Unit-Wise Lecture Notes (${currentLang === 'telugu' ? 'Telugu Active for U1' : 'English Active'})</span>
               <h2 class="section-title">Units 01 – 05 Study Material</h2>
             </div>
           </div>
@@ -1561,6 +1637,26 @@
       actions.classList.add("hidden");
 
       msg.textContent = "Lecture notes for this unit are currently being finalized by Pilli Lalith Sriharsha. Please check back soon or reach out via Student Helpline (9493471854).";
+      msg.classList.remove("hidden");
+
+      modal.classList.remove("hidden");
+    }
+
+    function openPracticalPendingModal(subjectTitle, practicalTitle) {
+      const modal = document.getElementById("doc-viewer-modal");
+      const frame = document.getElementById("modal-pdf-frame");
+      const msg = document.getElementById("modal-message");
+      const actions = document.getElementById("modal-footer-actions");
+
+      document.getElementById("modal-tag").textContent = "Practical Assessment";
+      document.getElementById("modal-heading").textContent = practicalTitle;
+      document.getElementById("modal-subheading").textContent = subjectTitle;
+
+      frame.src = "";
+      frame.classList.add("hidden");
+      actions.classList.add("hidden");
+
+      msg.textContent = "The Practical Questions Bank PDF for this subject will be uploaded soon by Pilli Lalith Sriharsha. Please check back shortly or contact Student Helpline (9493471854).";
       msg.classList.remove("hidden");
 
       modal.classList.remove("hidden");
