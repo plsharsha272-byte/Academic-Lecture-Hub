@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <!-- Internal Build Version: Web v48 (Hidden from public UI, preserved in title & download filename) -->
-  <title>Academic Hub V_48</title>
+  <!-- Internal Build Version: Web v52 (Hidden from public UI, preserved in title & download filename) -->
+  <title>Academic Hub V_52</title>
   <meta name="description" content="Academic Lecture Hub by Pilli Lalith Sriharsha, Master's in Computer Science — Official Syllabi & Unit-Wise Lecture Notes.">
 
   <style>
@@ -1134,10 +1134,10 @@
   </div>
 
   <!-- =====================================================================
-       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V48)
+       APPLICATION DATA & TAMPER-PROTECTED LOGIC (WEB V52)
   ====================================================================== -->
   <script>
-    const BUILD_VERSION_FILENAME = "Academic Hub V_48.html";
+    const BUILD_VERSION_FILENAME = "Academic Hub V_52.html";
 
     const PORTAL_CATALOG = {
       profile: {
@@ -1192,7 +1192,13 @@
               num: "02",
               title: "Basic Organization and Network Fundamentals",
               topics: "I/O Devices, Memory Hierarchy, Types of Computers, LAN/WAN/MAN, Topologies & Internet Basics.",
-              status: "coming_soon"
+              status: "available",
+              english: {
+                viewUrl: "https://drive.google.com/file/d/1pkFRfzAnJInoXoaEKkR21NQo292PXV1-/view?usp=drive_link",
+                previewUrl: "https://drive.google.com/file/d/1pkFRfzAnJInoXoaEKkR21NQo292PXV1-/preview",
+                downloadUrl: "https://drive.google.com/uc?export=download&id=1pkFRfzAnJInoXoaEKkR21NQo292PXV1-"
+              },
+              telugu: null
             },
             {
               num: "03",
@@ -1243,9 +1249,9 @@
               topics: "Computer Registers, Bus/Memory Transfers, Arithmetic/Logic/Shift Micro-operations & Instruction Cycle.",
               status: "available",
               english: {
-                viewUrl: "https://drive.google.com/file/d/1U5iTlIh6Dg6CW8urQ5R1Ck5C5ZvTEHlj/view?usp=drive_link",
-                previewUrl: "https://drive.google.com/file/d/1U5iTlIh6Dg6CW8urQ5R1Ck5C5ZvTEHlj/preview",
-                downloadUrl: "https://drive.google.com/uc?export=download&id=1U5iTlIh6Dg6CW8urQ5R1Ck5C5ZvTEHlj"
+                viewUrl: "https://drive.google.com/file/d/1pZaXl0prWaswk42dB-q2_sXj9HkTid0c/view?usp=drive_link",
+                previewUrl: "https://drive.google.com/file/d/1pZaXl0prWaswk42dB-q2_sXj9HkTid0c/preview",
+                downloadUrl: "https://drive.google.com/uc?export=download&id=1pZaXl0prWaswk42dB-q2_sXj9HkTid0c"
               }
             },
             {
@@ -1333,6 +1339,61 @@
               status: "coming_soon"
             }
           ]
+        },
+        {
+          id: "ai",
+          code: "AI",
+          semester: "Core Elective",
+          title: "Artificial Intelligence",
+          subtitle: "Foundations of AI, Search Algorithms, Knowledge Representation & Machine Learning",
+          isBilingual: false,
+          groups: ["BSc Computers", "BCom Both Sections", "BA Computers"],
+          syllabus: {
+            title: "AI Official University Syllabus Copy",
+            status: "coming_soon",
+            viewUrl: "",
+            previewUrl: "",
+            downloadUrl: ""
+          },
+          practicals: {
+            title: "AI Practical Questions Bank",
+            status: "coming_soon",
+            viewUrl: "",
+            previewUrl: "",
+            downloadUrl: ""
+          },
+          units: [
+            {
+              num: "01",
+              title: "Introduction to Artificial Intelligence & Intelligent Agents",
+              topics: "History & Foundations of AI, Turing Test, Rationality, PEAS Description, Agent Types & Environments.",
+              status: "coming_soon"
+            },
+            {
+              num: "02",
+              title: "Problem Solving & Search Strategies",
+              topics: "State Space Search, Uninformed Search (BFS, DFS), Heuristic Search (A*, Greedy Best-First) & Game Playing.",
+              status: "coming_soon"
+            },
+            {
+              num: "03",
+              title: "Knowledge Representation & Reasoning",
+              topics: "Propositional Logic, First-Order Predicate Logic, Inference Rules, Semantic Networks & Frames.",
+              status: "coming_soon"
+            },
+            {
+              num: "04",
+              title: "Uncertain Knowledge & Probabilistic Reasoning",
+              topics: "Bayes' Theorem, Bayesian Networks, Fuzzy Logic, Decision Theory & Handling Uncertainty.",
+              status: "coming_soon"
+            },
+            {
+              num: "05",
+              title: "Machine Learning, Neural Networks & NLP Basics",
+              topics: "Supervised & Unsupervised Learning, Artificial Neural Networks, Expert Systems & Natural Language Processing.",
+              status: "coming_soon"
+            }
+          ]
         }
       ]
     };
@@ -1365,10 +1426,15 @@
       if (!grid) return;
 
       grid.innerHTML = PORTAL_CATALOG.subjects.map(sub => {
-        const hasLiveNotes = sub.units.some(u => u.status === "available");
-        const statusBadge = hasLiveNotes
-          ? `<span class="card-pill-ice">Unit 01 Live</span>`
-          : `<span class="card-pill-gold">Syllabus Live</span>`;
+        const liveUnits = sub.units.filter(u => u.status === "available");
+        let statusBadge = `<span class="card-pill-muted">Coming Soon</span>`;
+        if (liveUnits.length > 1) {
+          statusBadge = `<span class="card-pill-ice">Units 01–0${liveUnits.length} Live</span>`;
+        } else if (liveUnits.length === 1) {
+          statusBadge = `<span class="card-pill-ice">Unit 01 Live</span>`;
+        } else if (sub.syllabus && sub.syllabus.status === "available") {
+          statusBadge = `<span class="card-pill-gold">Syllabus Live</span>`;
+        }
 
         const groupBadgesHtml = (sub.groups && sub.groups.length > 0) ? `
           <div class="subject-group-badges-row">
@@ -1431,17 +1497,18 @@
       `).join("");
 
       const unitCardsHtml = subject.units.map(unit => {
-        const isLive = unit.status === "available";
-        const badgeHtml = isLive
-          ? `<span class="card-pill-ice">${currentLang === 'telugu' && unit.num === '01' ? 'Telugu PDF' : 'Available'}</span>`
-          : `<span class="card-pill-muted">Coming Soon</span>`;
-
+        const isUnitAvailable = unit.status === "available";
         let activeDoc = unit.english;
-        if (subject.isBilingual && currentLang === 'telugu' && unit.telugu) {
-          activeDoc = unit.telugu;
+        if (subject.isBilingual && currentLang === 'telugu') {
+          activeDoc = unit.telugu || null;
         }
 
-        const bottomHtml = isLive && activeDoc
+        const isDocReady = isUnitAvailable && activeDoc && activeDoc.previewUrl;
+        const badgeHtml = isDocReady
+          ? `<span class="card-pill-ice">${currentLang === 'telugu' ? 'Telugu PDF' : 'Available'}</span>`
+          : `<span class="card-pill-muted">Coming Soon</span>`;
+
+        const bottomHtml = isDocReady
           ? `
             <div class="unit-card-actions">
               <button type="button"
@@ -1454,23 +1521,12 @@
               </a>
             </div>
           `
-          : (isLive && unit.english ? `
-            <div class="unit-card-actions">
-              <button type="button"
-                onclick="openPdfViewer('${escapeAttr(subject.title)}', 'Unit ${unit.num}: ${escapeAttr(unit.title)}', '${unit.english.previewUrl}', '${unit.english.viewUrl}', '${unit.english.downloadUrl}')"
-                class="btn-view-ice">
-                <span>View</span>
-              </button>
-              <a href="${unit.english.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
-                <span>Download &#8595;</span>
-              </a>
-            </div>
-          ` : `
+          : `
             <div class="unit-scheduled-bar" onclick="openComingSoonModal('${escapeAttr(subject.title)}', 'Unit ${unit.num}: ${escapeAttr(unit.title)}')">
               <span>&#9203; Scheduled Upload</span>
               <span>Info &#8594;</span>
             </div>
-          `);
+          `;
 
         return `
           <article class="sleek-card">
@@ -1492,8 +1548,8 @@
         languageSelectionHtml = `
           <div class="language-selection-section">
             <div>
-              <span class="lang-section-label">Select Study Material Language (Unit 01 Switch)</span>
-              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 2px;">Switching language dynamically updates Unit 01 document between English and Telugu.</p>
+              <span class="lang-section-label">Select Study Material Language</span>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 2px;">Switching language updates available lecture notes between English and Telugu.</p>
             </div>
             <div class="lang-toggle-bar">
               <button type="button" class="lang-btn ${currentLang === 'english' ? 'active' : ''}" onclick="switchSyllabusLang('${subject.id}', 'english')">English Version</button>
@@ -1502,6 +1558,29 @@
           </div>
         `;
       }
+
+      const syllabusActionsHtml = (syllabusData.status === "available" && syllabusData.previewUrl)
+        ? `
+          <div class="dual-action-row">
+            <button type="button"
+              onclick="openPdfViewer('${escapeAttr(subject.title)}', '${escapeAttr(syllabusData.title)}', '${syllabusData.previewUrl}', '${syllabusData.viewUrl}', '${syllabusData.downloadUrl}')"
+              class="btn-view-ice">
+              <span>View Syllabus</span>
+            </button>
+            <a href="${syllabusData.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
+              <span>Download &#8595;</span>
+            </a>
+          </div>
+        `
+        : `
+          <div class="dual-action-row">
+            <button type="button"
+              onclick="openSyllabusPendingModal('${escapeAttr(subject.title)}', '${escapeAttr(syllabusData.title)}')"
+              class="btn-pending-gold">
+              <span>&#9203; Syllabus Upload Pending</span>
+            </button>
+          </div>
+        `;
 
       const practicalActionsHtml = (practicalData.status === "available" && practicalData.previewUrl)
         ? `
@@ -1553,16 +1632,7 @@
             <h2 class="syllabus-card-heading">${syllabusData.title}</h2>
             <p class="syllabus-card-desc">Verified semester curriculum copy with complete unit-wise topics and reference textbooks.</p>
           </div>
-          <div class="dual-action-row">
-            <button type="button"
-              onclick="openPdfViewer('${escapeAttr(subject.title)}', '${escapeAttr(syllabusData.title)}', '${syllabusData.previewUrl}', '${syllabusData.viewUrl}', '${syllabusData.downloadUrl}')"
-              class="btn-view-ice">
-              <span>View Syllabus</span>
-            </button>
-            <a href="${syllabusData.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-download-gold">
-              <span>Download &#8595;</span>
-            </a>
-          </div>
+          ${syllabusActionsHtml}
         </section>
 
         <!-- 02. PRACTICAL QUESTIONS SECTION (ALL SUBJECTS) -->
@@ -1582,7 +1652,7 @@
         <section aria-label="Unit-Wise Lecture Notes">
           <div class="section-header">
             <div>
-              <span class="step-eyebrow">03 • Unit-Wise Lecture Notes (${currentLang === 'telugu' ? 'Telugu Active for U1' : 'English Active'})</span>
+              <span class="step-eyebrow">03 • Unit-Wise Lecture Notes (${subject.isBilingual ? (currentLang === 'telugu' ? 'Telugu Active' : 'English Active') : 'English Active'})</span>
               <h2 class="section-title">Units 01 – 05 Study Material</h2>
             </div>
           </div>
@@ -1666,6 +1736,26 @@
       actions.classList.add("hidden");
 
       msg.textContent = "The Practical Questions Bank PDF for this subject will be uploaded soon by Pilli Lalith Sriharsha. Please check back shortly or contact Student Helpline (9493471854).";
+      msg.classList.remove("hidden");
+
+      modal.classList.remove("hidden");
+    }
+
+    function openSyllabusPendingModal(subjectTitle, syllabusTitle) {
+      const modal = document.getElementById("doc-viewer-modal");
+      const frame = document.getElementById("modal-pdf-frame");
+      const msg = document.getElementById("modal-message");
+      const actions = document.getElementById("modal-footer-actions");
+
+      document.getElementById("modal-tag").textContent = "Official Syllabus";
+      document.getElementById("modal-heading").textContent = syllabusTitle;
+      document.getElementById("modal-subheading").textContent = subjectTitle;
+
+      frame.src = "";
+      frame.classList.add("hidden");
+      actions.classList.add("hidden");
+
+      msg.textContent = "The Official University Syllabus PDF for Artificial Intelligence (AI) will be uploaded shortly by Pilli Lalith Sriharsha. Please check back soon or reach out via Student Helpline (9493471854).";
       msg.classList.remove("hidden");
 
       modal.classList.remove("hidden");
